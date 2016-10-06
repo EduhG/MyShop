@@ -10,12 +10,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.eduhg.myshop.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="60sp"
-        android:textColor="@color/colorPrimary"
+    <RelativeLayout
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="MyShop" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:src="@drawable/shop"
+            android:id="@+id/applogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="166dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:gravity="center_horizontal"
+            android:textSize="60sp"
+            android:textColor="@color/colorPrimary"
+            android:text="MyShop"
+            android:layout_below="@+id/applogo"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 </RelativeLayout>
