@@ -1,5 +1,6 @@
 package com.eduhg.myshop;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -24,6 +25,14 @@ public class HomeActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.dashboard_viewpager);
+        if (viewPager != null) {
+            setupViewPager(viewPager);
+        }
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.dashboard_tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -45,5 +54,41 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
+        adapter.addFragment(new DailyReportsFragment(), "Daily Reports");
+        adapter.addFragment(new MyStockFragment(), "My Stock");
+
+        viewPager.setAdapter(adapter);
+    }
+
+    public class TabAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public TabAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
+    }
 
 }
