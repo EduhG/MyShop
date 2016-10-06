@@ -6,9 +6,12 @@
     android:background="#fff"
     tools:context="com.eduhg.myshop.HomeActivity">
 
-    <include
+    <!--<include
         android:id="@+id/tool_bar"
         layout="@layout/app_bar"
-        ></include>
+        ></include>-->
+
+    <include layout="@layout/dashboard" android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
