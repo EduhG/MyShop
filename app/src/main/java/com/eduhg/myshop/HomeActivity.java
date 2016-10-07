@@ -16,23 +16,75 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
+    //Declaring All The Variables Needed
+
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
+        /*
+        Assign view variables to their respective view in xml by findViewByID method
+         */
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+        /*
+        Creating an Adapter and setting the adapter to the viewPager
+        setSupportActionBar method takes the toolbar and sets it as
+        the default action bar thus making the toolbar work like a normal
+        action bar.
+         */
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
         setSupportActionBar(toolbar);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.dashboard_viewpager);
-        if (viewPager != null) {
-            setupViewPager(viewPager);
-        }
+        /*
+        TabLayout.newTab() method creates a tab.
+         */
+        final TabLayout.Tab home = tabLayout.newTab();
+        final TabLayout.Tab inbox = tabLayout.newTab();
+        final TabLayout.Tab star = tabLayout.newTab();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.dashboard_tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        /*
+        Setting Title text for our tabs respectively
+         */
+        home.setText("Home");
+        inbox.setText("Inbox");
+        star.setText("Star");
+
+        /*
+        Adding the tabs to our tablayout at appropriate positions
+        As I want home at first position I am passing home and 0 as argument to
+        the tablayout and like wise for other tabs as well
+         */
+        tabLayout.addTab(home, 0);
+        tabLayout.addTab(inbox, 1);
+        tabLayout.addTab(star, 2);
+
+        /*
+        TabTextColor sets the color for the title of the tabs, passing a ColorStateList here makes
+        tab change colors in different situations such as selected, active, inactive etc
+
+        TabIndicatorColor sets the color for the indiactor below the tabs
+         */
+
+        /*tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));*/
+
+        /*
+        Adding a onPageChangeListener to the viewPager
+        1st we add the PageChangeListener and pass a TabLayoutPageChangeListener so that Tabs Selection
+        changes when a viewpager page changes.
+         */
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
     @Override

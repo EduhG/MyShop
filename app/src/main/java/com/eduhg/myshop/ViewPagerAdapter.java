@@ -15,7 +15,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new DailyReportsFragment();    // Which Fragment should be dislpayed by the viewpager for the given position
+        return new DashboardSummaryFragment();    // Which Fragment should be dislpayed by the viewpager for the given position
         // In my case we are showing up only one fragment in all the three tabs so we are
         // not worrying about the position and just returning the TabFragment
     }
