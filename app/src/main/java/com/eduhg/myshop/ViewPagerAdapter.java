@@ -4,25 +4,38 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Admin on 11-12-2015.
  */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
+    private final List<Fragment> mFragments = new ArrayList<>();
+    private final List<String> mFragmentTitles = new ArrayList<>();
+
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
+    public void addFragment(Fragment fragment, String title) {
+        mFragments.add(fragment);
+        mFragmentTitles.add(title);
+    }
+
     @Override
     public Fragment getItem(int position) {
-        return new DashboardSummaryFragment();    // Which Fragment should be dislpayed by the viewpager for the given position
-        // In my case we are showing up only one fragment in all the three tabs so we are
-        // not worrying about the position and just returning the TabFragment
+        return mFragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return 3;           // As there are only 3 Tabs
+        return mFragments.size();
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragmentTitles.get(position);
+    }
 }

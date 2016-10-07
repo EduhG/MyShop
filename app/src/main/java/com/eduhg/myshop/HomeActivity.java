@@ -35,56 +35,15 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        /*
-        Creating an Adapter and setting the adapter to the viewPager
-        setSupportActionBar method takes the toolbar and sets it as
-        the default action bar thus making the toolbar work like a normal
-        action bar.
-         */
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(viewPagerAdapter);
+        /*Set toolbar to act as action bar*/
         setSupportActionBar(toolbar);
 
-        /*
-        TabLayout.newTab() method creates a tab.
-         */
-        final TabLayout.Tab home = tabLayout.newTab();
-        final TabLayout.Tab inbox = tabLayout.newTab();
-        final TabLayout.Tab star = tabLayout.newTab();
+        if (viewPager != null) {
+            setupViewPager(viewPager);
+        }
 
-        /*
-        Setting Title text for our tabs respectively
-         */
-        home.setText("Home");
-        inbox.setText("Inbox");
-        star.setText("Star");
+        tabLayout.setupWithViewPager(viewPager);
 
-        /*
-        Adding the tabs to our tablayout at appropriate positions
-        As I want home at first position I am passing home and 0 as argument to
-        the tablayout and like wise for other tabs as well
-         */
-        tabLayout.addTab(home, 0);
-        tabLayout.addTab(inbox, 1);
-        tabLayout.addTab(star, 2);
-
-        /*
-        TabTextColor sets the color for the title of the tabs, passing a ColorStateList here makes
-        tab change colors in different situations such as selected, active, inactive etc
-
-        TabIndicatorColor sets the color for the indiactor below the tabs
-         */
-
-        /*tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
-        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));*/
-
-        /*
-        Adding a onPageChangeListener to the viewPager
-        1st we add the PageChangeListener and pass a TabLayoutPageChangeListener so that Tabs Selection
-        changes when a viewpager page changes.
-         */
-
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
     @Override
@@ -107,40 +66,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new DailyReportsFragment(), "Daily Reports");
-        adapter.addFragment(new MyStockFragment(), "My Stock");
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new DashboardSummaryFragment(), "Daily Reports");
+        viewPagerAdapter.addFragment(new MyStockFragment(), "My Stock");
 
-        viewPager.setAdapter(adapter);
-    }
-
-    public class TabAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
-
-        public TabAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
-        }
+        viewPager.setAdapter(viewPagerAdapter);
     }
 
 }
