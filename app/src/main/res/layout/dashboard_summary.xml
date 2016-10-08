@@ -1,138 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
+android:orientation="vertical"
+    android:padding="8dp"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<android.support.v7.widget.CardView
+    android:id="@+id/revenues"
+    android:layout_gravity="center"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:layout_weight="1"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="2dp"
+    card_view:contentPadding="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#fff"
-            android:paddingTop="16dp">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"/>
 
-                <LinearLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:paddingLeft="0dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:background="#f00"
-                    android:orientation="vertical"
-                    android:gravity="bottom"
-                    android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
+<android.support.v7.widget.CardView
+    android:id="@+id/expenses"
+    android:layout_gravity="center"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:layout_weight="1"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="2dp"
+    card_view:contentPadding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/contributions1"
-                            android:textSize="25sp"
-                            android:paddingLeft="16dp"
-                            android:text="Revenues"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-                    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:background="#fff"
-                        android:padding="16dp"
-                        android:layout_margin="0dp"
-                        android:gravity="center"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"/>
 
-                        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView3"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/contributions"
-                            android:textSize="25sp"
-                            android:text="Sales"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
-
-                <LinearLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:paddingLeft="0dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="0dp"
-                    android:background="#00f"
-                    android:orientation="vertical"
-                    android:gravity="bottom"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/expenses"
-                            android:textSize="25sp"
-                            android:paddingLeft="16dp"
-                            android:text="Expenses"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:background="#fff"
-                        android:padding="16dp"
-                        android:layout_margin="0dp"
-                        android:gravity="center"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/purchases"
-                            android:textSize="25sp"
-                            android:text="Purchases"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
