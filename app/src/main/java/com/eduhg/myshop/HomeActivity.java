@@ -19,9 +19,9 @@ public class HomeActivity extends AppCompatActivity {
     //Declaring All The Variables Needed
 
     private Toolbar toolbar;
-    private TabLayout tabLayout;
+    /*private TabLayout tabLayout;
     private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
+    private ViewPagerAdapter viewPagerAdapter;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +32,17 @@ public class HomeActivity extends AppCompatActivity {
         Assign view variables to their respective view in xml by findViewByID method
          */
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        /*tabLayout = (TabLayout) findViewById(R.id.tabs);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);*/
 
         /*Set toolbar to act as action bar*/
         setSupportActionBar(toolbar);
 
-        if (viewPager != null) {
+        /*if (viewPager != null) {
             setupViewPager(viewPager);
         }
 
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);*/
 
     }
 
@@ -66,11 +66,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        /*viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new DashboardSummaryFragment(), "Daily Reports");
         viewPagerAdapter.addFragment(new MyStockFragment(), "My Stock");
 
-        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setAdapter(viewPagerAdapter);*/
     }
 
 }
