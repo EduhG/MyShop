@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:layout_weight="1"
-        card_view:cardCornerRadius="0dp"
+        card_view:cardCornerRadius="1dp"
         card_view:contentPadding="10dp">
 
         <RelativeLayout
@@ -43,7 +43,7 @@
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:layout_weight="1"
-        card_view:cardCornerRadius="0dp"
+        card_view:cardCornerRadius="1dp"
         card_view:contentPadding="10dp">
 
         <RelativeLayout
