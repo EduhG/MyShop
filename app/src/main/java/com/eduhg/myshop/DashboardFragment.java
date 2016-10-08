@@ -35,7 +35,6 @@ public class DashboardFragment extends Fragment {
         /*
         Assign view variables to their respective view in xml by findViewByID method
          */
-
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
 

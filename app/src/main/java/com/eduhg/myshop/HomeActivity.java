@@ -24,24 +24,15 @@ public class HomeActivity  extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     //Declaring All The Variables Needed
-
     private Toolbar toolbar;
     private NavigationView navigationView;
-    /*private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        /*
-        Assign view variables to their respective view in xml by findViewByID method
-         */
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        /*tabLayout = (TabLayout) findViewById(R.id.tabs);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);*/
 
         /*Set toolbar to act as action bar*/
         setSupportActionBar(toolbar);
@@ -52,13 +43,6 @@ public class HomeActivity  extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
-
-        /*if (viewPager != null) {
-            setupViewPager(viewPager);
-        }
-
-        tabLayout.setupWithViewPager(viewPager);*/
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -113,46 +97,38 @@ public class HomeActivity  extends AppCompatActivity
 
         if (id == R.id.nav_topics) {
             //Set the fragment initially
-            /*TopicsFragment fragment = new TopicsFragment();
+            DashboardFragment fragment = new DashboardFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_favourites) {
             //Set the fragment initially
-            /*QuestionsFragment fragment = new QuestionsFragment();
+            SalesFragment fragment = new SalesFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_profile) {
             //Set the fragment initially
-            /*ProfileFragment fragment = new ProfileFragment();
+            StockFragment fragment = new StockFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_register) {
             //Set the fragment initially
-            /*RegisterFragment fragment = new RegisterFragment();
+            SuppliersFragment fragment = new SuppliersFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        /*viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new DashboardSummaryFragment(), "Daily Reports");
-        viewPagerAdapter.addFragment(new MyStockFragment(), "My Stock");
-
-        viewPager.setAdapter(viewPagerAdapter);*/
     }
 
 }
