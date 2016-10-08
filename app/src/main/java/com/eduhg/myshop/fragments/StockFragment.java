@@ -1,7 +1,5 @@
-package com.eduhg.myshop;
+package com.eduhg.myshop.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,6 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.eduhg.myshop.R;
+import com.eduhg.myshop.adapters.ViewPagerAdapter;
 
 public class StockFragment extends Fragment {
     TabLayout tabLayout;

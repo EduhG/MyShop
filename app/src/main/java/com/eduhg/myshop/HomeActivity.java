@@ -12,7 +12,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.eduhg.myshop.fragments.CustomersFragment;
+import com.eduhg.myshop.fragments.DashboardFragment;
+import com.eduhg.myshop.fragments.ExpensesFragment;
+import com.eduhg.myshop.fragments.ReportsFragment;
+import com.eduhg.myshop.fragments.SalesFragment;
+import com.eduhg.myshop.fragments.StockFragment;
+import com.eduhg.myshop.fragments.SuppliersFragment;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

@@ -1,4 +1,4 @@
-package com.eduhg.myshop;
+package com.eduhg.myshop.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

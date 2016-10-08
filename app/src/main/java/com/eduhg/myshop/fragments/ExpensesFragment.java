@@ -1,18 +1,17 @@
-package com.eduhg.myshop;
+package com.eduhg.myshop.fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class DashboardFragment extends Fragment {
+import com.eduhg.myshop.R;
 
-    public DashboardFragment() {
+public class ExpensesFragment extends Fragment {
+    public ExpensesFragment() {
         // Required empty public constructor
     }
 
@@ -26,6 +25,6 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        return inflater.inflate(R.layout.fragment_expenses, container, false);
     }
 }
