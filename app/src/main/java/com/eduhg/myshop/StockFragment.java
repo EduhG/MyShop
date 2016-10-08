@@ -48,8 +48,8 @@ public class StockFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        viewPagerAdapter.addFragment(new DashboardSummaryFragment(), "Daily Reports");
-        viewPagerAdapter.addFragment(new MyStockFragment(), "My Stock");
+        viewPagerAdapter.addFragment(new SuppliersFragment(), "Daily Reports");
+        viewPagerAdapter.addFragment(new CustomersFragment(), "My Stock");
 
         viewPager.setAdapter(viewPagerAdapter);
     }
