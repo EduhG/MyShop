@@ -46,6 +46,13 @@ public class HomeActivity  extends AppCompatActivity
         /*Set toolbar to act as action bar*/
         setSupportActionBar(toolbar);
 
+        //Set the fragment initially
+        DashboardFragment fragment = new DashboardFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+
         /*if (viewPager != null) {
             setupViewPager(viewPager);
         }
