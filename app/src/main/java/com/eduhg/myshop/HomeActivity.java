@@ -1,12 +1,8 @@
 package com.eduhg.myshop;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,26 +12,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class HomeActivity  extends AppCompatActivity
+public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //Declaring All The Variables Needed
-    private Toolbar toolbar;
-    private NavigationView navigationView;
+    NavigationView navigationView = null;
+    Toolbar toolbar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-
-        /*Set toolbar to act as action bar*/
-        setSupportActionBar(toolbar);
 
         //Set the fragment initially
         DashboardFragment fragment = new DashboardFragment();
@@ -43,6 +31,9 @@ public class HomeActivity  extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -58,6 +49,7 @@ public class HomeActivity  extends AppCompatActivity
         TextView emailText = (TextView) headerView.findViewById(R.id.email);
         emailText.setText("newemail@email.com");
 
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -85,18 +77,21 @@ public class HomeActivity  extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_topics) {
             //Set the fragment initially
+            Toast.makeText(HomeActivity.this, "Toast", Toast.LENGTH_SHORT);
+
             DashboardFragment fragment = new DashboardFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
@@ -130,5 +125,4 @@ public class HomeActivity  extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }
