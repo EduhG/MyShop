@@ -88,16 +88,14 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_topics) {
+        if (id == R.id.nav_dashboard) {
             //Set the fragment initially
-            Toast.makeText(HomeActivity.this, "Toast", Toast.LENGTH_SHORT);
-
             DashboardFragment fragment = new DashboardFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_favourites) {
+        } else if (id == R.id.nav_sales) {
             //Set the fragment initially
             SalesFragment fragment = new SalesFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -105,16 +103,37 @@ public class HomeActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_profile) {
+        } else if (id == R.id.nav_expenses) {
+            //Set the fragment initially
+            ExpensesFragment fragment = new ExpensesFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_stock) {
             //Set the fragment initially
             StockFragment fragment = new StockFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_register) {
+        } else if (id == R.id.nav_suppliers) {
             //Set the fragment initially
             SuppliersFragment fragment = new SuppliersFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_customers) {
+            //Set the fragment initially
+            CustomersFragment fragment = new CustomersFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_reports) {
+            //Set the fragment initially
+            ReportsFragment fragment = new ReportsFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
