@@ -1,18 +1,17 @@
 package com.eduhg.myshop;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class DashboardFragment extends Fragment {
+/**
+ * Created by EduhG on 10/8/2016.
+ */
+public class CustomersFragment extends Fragment {
 
-    public DashboardFragment() {
+    public CustomersFragment() {
         // Required empty public constructor
     }
 
