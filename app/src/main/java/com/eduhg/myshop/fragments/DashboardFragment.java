@@ -1,8 +1,10 @@
 package com.eduhg.myshop.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.DropBoxManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -19,7 +21,11 @@ import android.widget.Toast;
 import com.eduhg.myshop.R;
 import com.eduhg.myshop.adapters.SoldItemsAdapter;
 import com.eduhg.myshop.models.SoldItem;
-import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -27,7 +33,7 @@ public class DashboardFragment extends Fragment {
     RecyclerView mRecyclerView;
     ArrayList<SoldItem> soldItem;
 
-    LineChart lineChart;
+    BarChart barChart;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -67,7 +73,46 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        barChart = (BarChart) rootView.findViewById(R.id.profitsChart);
 
+        /*ArrayList<BarEntry> chartEntries = new ArrayList<>();
+        chartEntries.add(new BarEntry(44f, 0));
+        chartEntries.add(new BarEntry(20f, 1));
+        chartEntries.add(new BarEntry(67f, 2));
+        chartEntries.add(new BarEntry(43f, 3));
+        chartEntries.add(new BarEntry(30f, 4));
+
+        BarDataSet barDataSet = new BarDataSet(chartEntries, "Profits");
+
+        ArrayList<String> weeks = new ArrayList<>();
+        weeks.add("Week 1");
+        weeks.add("Week 2");
+        weeks.add("Week 3");
+        weeks.add("Week 4");
+        weeks.add("Week 5");
+
+        BarData barData = new BarData(barDataSet);
+        barChart.setData(barData);*/
+
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0f, 30f));
+        entries.add(new BarEntry(1f, 20f));
+        entries.add(new BarEntry(2f, 40f));
+        entries.add(new BarEntry(3f, 30f));
+        // gap of 2f
+        entries.add(new BarEntry(4f, 50f));
+
+        BarDataSet set = new BarDataSet(entries, "BarDataSet");
+        set.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        BarData data = new BarData(set);
+        data.setBarWidth(0.8f); // set custom bar width
+        barChart.setData(data);
+        barChart.setDescription("");
+        barChart.setDrawGridBackground(false);
+        barChart.animateY(2000);
+        barChart.setFitBars(true); // make the x-axis fit exactly all bars
+        barChart.invalidate(); // refresh
 
         return rootView;
     }
