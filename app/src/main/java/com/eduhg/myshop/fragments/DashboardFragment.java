@@ -19,12 +19,15 @@ import android.widget.Toast;
 import com.eduhg.myshop.R;
 import com.eduhg.myshop.adapters.SoldItemsAdapter;
 import com.eduhg.myshop.models.SoldItem;
+import com.github.mikephil.charting.charts.LineChart;
 
 import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
     RecyclerView mRecyclerView;
     ArrayList<SoldItem> soldItem;
+
+    LineChart lineChart;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -63,6 +66,8 @@ public class DashboardFragment extends Fragment {
                 showPopupMenu(view);
             }
         });
+
+
 
         return rootView;
     }
