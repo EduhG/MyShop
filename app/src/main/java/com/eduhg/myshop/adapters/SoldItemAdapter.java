@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eduhg.myshop.R;
-import com.eduhg.myshop.SoldItem;
+import com.eduhg.myshop.models.SoldItem;
 
 import java.util.ArrayList;
 import java.util.List;
