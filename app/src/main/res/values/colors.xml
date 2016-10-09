@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#019165</color>
     <color name="colorAccent">#2DD0AC</color>
     <color name="navigationBarColor">#2A6041</color>
+
+    <color name="fab1_color">#FF4081</color>
+    <color name="fab2_color">#2196F3</color>
 </resources>
