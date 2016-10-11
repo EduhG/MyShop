@@ -154,4 +154,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return salesDetails;
 
     }
+
+    /*
+   Delete single row from UserTable
+    */
+    void deleteRow(String name) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            db.beginTransaction();
+            db.execSQL("delete from " + TABLE_SALES + " where name ='" + name + "'");
+            db.setTransactionSuccessful();
+        } catch (SQLException e) {
+            Log.d(TAG, "Error while trying to delete  users detail");
+        } finally {
+            db.endTransaction();
+        }
+
+    }
 }
