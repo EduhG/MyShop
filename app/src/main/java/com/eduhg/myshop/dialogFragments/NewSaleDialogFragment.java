@@ -3,6 +3,7 @@ package com.eduhg.myshop.dialogFragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.eduhg.myshop.R;
+import com.eduhg.myshop.database.DBHelper;
 import com.eduhg.myshop.database.SqliteHandler;
+import com.eduhg.myshop.models.SalesData;
 
 /**
  * Created by EduhG on 10/11/2016.
@@ -25,6 +28,7 @@ public class NewSaleDialogFragment  extends DialogFragment {
     private EditText input_price;
 
     SqliteHandler myDb;
+    DBHelper dbHelper;
 
     public NewSaleDialogFragment() {
         // Empty constructor is required for DialogFragment
@@ -86,7 +90,7 @@ public class NewSaleDialogFragment  extends DialogFragment {
     }
 
     private void getDataForInserting() {
-        String item_name = spCountries.getSelectedItem().toString();
+        /*String item_name = spCountries.getSelectedItem().toString();
         String quantity = input_units.getText().toString();
         String price = input_price.getText().toString();
 
@@ -96,5 +100,38 @@ public class NewSaleDialogFragment  extends DialogFragment {
         input_price.setText("");
 
         Toast.makeText(getActivity(), "Data Added Successfully", Toast.LENGTH_LONG).show();
+        */
+
+        SalesData salesData = new SalesData();
+
+        if (!spCountries.getSelectedItem().toString().isEmpty()) {
+            salesData.item_name = spCountries.getSelectedItem().toString();
+        } else {
+            salesData.item_name = "";
+        }
+        if (!input_units.getText().toString().isEmpty()) {
+            salesData.quantity_sold = input_units.getText().toString();
+        } else {
+            salesData.quantity_sold = "";
+        }
+        if (!input_price.getText().toString().isEmpty()) {
+            salesData.unit_price = input_price.getText().toString();
+        } else {
+            salesData.unit_price = "";
+        }
+
+        try {
+            dbHelper.insertUserDetail(salesData);
+
+            input_units.setText("");
+            input_price.setText("");
+
+            Toast.makeText(getActivity(), "Data Added Successfully", Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Data Not Added", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 }
