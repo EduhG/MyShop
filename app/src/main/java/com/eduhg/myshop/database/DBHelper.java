@@ -3,12 +3,16 @@ package com.eduhg.myshop.database;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.eduhg.myshop.models.SalesData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by EduhG on 10/11/2016.
@@ -111,7 +115,43 @@ public class DBHelper extends SQLiteOpenHelper {
 
             db.endTransaction();
         }
+    }
 
+    /*
+    fetch all data from UserTable
+    */
+
+    public List<SalesData> getAllSalesData() {
+
+        List<SalesData> salesDetails = new ArrayList<>();
+
+        String USER_DETAIL_SELECT_QUERY = "SELECT * FROM " + TABLE_SALES;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(USER_DETAIL_SELECT_QUERY, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    SalesData salesData = new SalesData();
+                    salesData.item_name = cursor.getString(cursor.getColumnIndex(ITEM_NAME));
+                    salesData.quantity_sold = cursor.getString(cursor.getColumnIndex(QUANTITY_SOLD));
+                    salesData.unit_price = cursor.getString(cursor.getColumnIndex(UNIT_PRICE));
+                    salesData.quantity_remaining = cursor.getString(cursor.getColumnIndex(QUANTITY_REMAINING));
+
+                    salesDetails.add(salesData);
+
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to get posts from database");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+
+        return salesDetails;
 
     }
 }
