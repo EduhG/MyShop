@@ -25,8 +25,29 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String UNIT_PRICE = "unit_price";
     private static final String QUANTITY_REMAINING = "quantity_remaining";
 
-    public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    private static DBHelper mDbHelper;
+
+    /*public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+    }*/
+
+    public static synchronized DBHelper getInstance(Context context) {
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+
+        if (mDbHelper == null) {
+            mDbHelper = new DBHelper(context.getApplicationContext());
+        }
+        return mDbHelper;
+    }
+
+
+    /**
+     * Constructor should be private to prevent direct instantiation.
+     * Make a call to the static method "getInstance()" instead.
+     */
+    private DBHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
