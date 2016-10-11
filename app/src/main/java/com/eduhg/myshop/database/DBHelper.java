@@ -1,9 +1,14 @@
 package com.eduhg.myshop.database;
 
 import android.content.ContentProvider;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.eduhg.myshop.models.SalesData;
 
 /**
  * Created by EduhG on 10/11/2016.
@@ -78,5 +83,35 @@ public class DBHelper extends SQLiteOpenHelper {
 
             onCreate(db);
         }
+    }
+
+    /*
+   Insert a  user detail into database
+   */
+
+    public void insertUserDetail(SalesData salesData) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.beginTransaction();
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(ITEM_NAME, salesData.item_name);
+            values.put(QUANTITY_SOLD, salesData.quantity_sold);
+            values.put(UNIT_PRICE, salesData.unit_price);
+            values.put(QUANTITY_REMAINING, salesData.quantity_remaining);
+
+            db.insertOrThrow(TABLE_SALES, null, values);
+            db.setTransactionSuccessful();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error while trying to add post to database");
+        } finally {
+
+            db.endTransaction();
+        }
+
+
     }
 }
