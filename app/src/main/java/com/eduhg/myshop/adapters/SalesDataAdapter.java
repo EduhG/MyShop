@@ -26,7 +26,7 @@ public class SalesDataAdapter extends RecyclerView.Adapter<SalesDataAdapter.Sale
 
         this.context = context;
         this.dataList = dataList1;
-        this.listener= (Listener) context;
+        //this.listener = (Listener) context;
         inflater = LayoutInflater.from(context);
 
     }
@@ -36,7 +36,7 @@ public class SalesDataAdapter extends RecyclerView.Adapter<SalesDataAdapter.Sale
         // Set item views based on your views and data model
         viewHolder.textViewName.setText(dataList.get(position).item_name);
         viewHolder.textViewSold.setText(dataList.get(position).quantity_sold);
-        viewHolder.textViewRem.setText(dataList.get(position).quantity_remaining);
+        viewHolder.textViewRem.setText(dataList.get(position).unit_price);
 
     }
 
@@ -70,8 +70,6 @@ public class SalesDataAdapter extends RecyclerView.Adapter<SalesDataAdapter.Sale
         }
     }
 
-    public interface Listener {
-        void nameToChange(String name);
-    }
 }
+
 

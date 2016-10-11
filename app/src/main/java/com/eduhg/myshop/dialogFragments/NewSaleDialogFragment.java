@@ -90,10 +90,11 @@ public class NewSaleDialogFragment  extends DialogFragment {
     }
 
     private void getDataForInserting() {
-        /*String item_name = spCountries.getSelectedItem().toString();
+        String item_name = spCountries.getSelectedItem().toString();
         String quantity = input_units.getText().toString();
         String price = input_price.getText().toString();
 
+        /*
         myDb.addSale(item_name, quantity, price);
 
         input_units.setText("");
@@ -101,6 +102,10 @@ public class NewSaleDialogFragment  extends DialogFragment {
 
         Toast.makeText(getActivity(), "Data Added Successfully", Toast.LENGTH_LONG).show();
         */
+
+        Log.d("DB_INSERT_NAME", item_name);
+        Log.d("DB_INSERT_QTY", quantity);
+        Log.d("DB_INSERT_PRICE", price);
 
         SalesData salesData = new SalesData();
 
@@ -120,8 +125,11 @@ public class NewSaleDialogFragment  extends DialogFragment {
             salesData.unit_price = "";
         }
 
+        dbHelper = new DBHelper(getActivity());
         try {
-            dbHelper.insertUserDetail(salesData);
+
+            //dbHelper.insertUserDetail(salesData);
+            dbHelper.insertUserDetail(item_name, quantity, price);
 
             input_units.setText("");
             input_price.setText("");
@@ -129,6 +137,8 @@ public class NewSaleDialogFragment  extends DialogFragment {
             Toast.makeText(getActivity(), "Data Added Successfully", Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
+            Log.d("DB_INSERT_ERROR", e.toString());
+
             Toast.makeText(getActivity(), "Data Not Added", Toast.LENGTH_LONG).show();
         }
 

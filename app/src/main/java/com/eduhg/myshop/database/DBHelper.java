@@ -55,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * Constructor should be private to prevent direct instantiation.
      * Make a call to the static method "getInstance()" instead.
      */
-    private DBHelper(Context context) {
+    public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -63,11 +63,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_SALES_TABLE = "CREATE TABLE " + TABLE_SALES +
                 "(" +
-                _ID + " INTEGER PRIMARY KEY ," +
-                ITEM_NAME + " TEXT," +
-                QUANTITY_SOLD + " TEXT," +
-                UNIT_PRICE + " TEXT," +
-                QUANTITY_REMAINING + " TEXT" +
+                _ID + " INTEGER PRIMARY KEY, " +
+                ITEM_NAME + " TEXT, " +
+                QUANTITY_SOLD + " TEXT, " +
+                UNIT_PRICE + " TEXT" +
+                //QUANTITY_REMAINING + " TEXT" +
                 ")";
 
         db.execSQL(CREATE_SALES_TABLE);
@@ -93,7 +93,14 @@ public class DBHelper extends SQLiteOpenHelper {
    Insert a  user detail into database
    */
 
-    public void insertUserDetail(SalesData salesData) {
+    public String insertUserDetail(String name, String qty, String price) {
+    //public void insertUserDetail(SalesData salesData) {
+
+        Log.d("DB_INSERT_NAME", name);
+        Log.d("DB_INSERT_QTY", qty);
+        Log.d("DB_INSERT_PRICE", price);
+
+        String saved = "";
 
         SQLiteDatabase db = getWritableDatabase();
 
@@ -101,13 +108,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
         try {
             ContentValues values = new ContentValues();
-            values.put(ITEM_NAME, salesData.item_name);
-            values.put(QUANTITY_SOLD, salesData.quantity_sold);
-            values.put(UNIT_PRICE, salesData.unit_price);
-            values.put(QUANTITY_REMAINING, salesData.quantity_remaining);
+            values.put(ITEM_NAME, name);
+            values.put(QUANTITY_SOLD, qty);
+            values.put(UNIT_PRICE, price);
+            //values.put(QUANTITY_REMAINING, salesData.quantity_remaining);
 
             db.insertOrThrow(TABLE_SALES, null, values);
             db.setTransactionSuccessful();
+            saved = "yes";
+
         } catch (SQLException e) {
             e.printStackTrace();
             Log.d(TAG, "Error while trying to add post to database");
@@ -115,6 +124,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
             db.endTransaction();
         }
+
+        return saved;
     }
 
     /*
@@ -134,10 +145,11 @@ public class DBHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     SalesData salesData = new SalesData();
+
                     salesData.item_name = cursor.getString(cursor.getColumnIndex(ITEM_NAME));
                     salesData.quantity_sold = cursor.getString(cursor.getColumnIndex(QUANTITY_SOLD));
                     salesData.unit_price = cursor.getString(cursor.getColumnIndex(UNIT_PRICE));
-                    salesData.quantity_remaining = cursor.getString(cursor.getColumnIndex(QUANTITY_REMAINING));
+                    //salesData.quantity_remaining = cursor.getString(cursor.getColumnIndex(QUANTITY_REMAINING));
 
                     salesDetails.add(salesData);
 

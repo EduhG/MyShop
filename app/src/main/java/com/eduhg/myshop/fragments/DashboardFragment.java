@@ -29,7 +29,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.eduhg.myshop.R;
+import com.eduhg.myshop.adapters.SalesDataAdapter;
 import com.eduhg.myshop.adapters.SoldItemsAdapter;
+import com.eduhg.myshop.database.DBHelper;
 import com.eduhg.myshop.dialogFragments.NewSaleDialogFragment;
 import com.eduhg.myshop.models.SoldItem;
 import com.github.mikephil.charting.charts.BarChart;
@@ -50,6 +52,9 @@ public class DashboardFragment extends Fragment {
     Animation fab_open, fab_close, fab_clockwise, fab_anticlockwise;
     boolean isOpen = false;
 
+    DBHelper dbHelper;
+    SalesDataAdapter salesDataAdapter;
+
     public DashboardFragment() {
         // Required empty public constructor
     }
@@ -66,7 +71,7 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        // Lookup the recyclerview in activity layout
+        /*// Lookup the recyclerview in activity layout
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
         // Initialize contacts
@@ -76,7 +81,23 @@ public class DashboardFragment extends Fragment {
         // Attach the adapter to the recyclerview to populate items
         mRecyclerView.setAdapter(adapter);
         // Set layout manager to position the items
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
+
+
+        /*        Querrying data from sqlite db and adding it to recycler view
+        */
+
+        dbHelper = DBHelper.getInstance(getContext());
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        salesDataAdapter = new SalesDataAdapter(getActivity(), dbHelper.getAllSalesData());
+        mRecyclerView.setAdapter(salesDataAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+
+
+
 
         final ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.soldItems);
 
