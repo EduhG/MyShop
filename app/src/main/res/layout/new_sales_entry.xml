@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/spCountries"
+        android:spinnerMode="dialog"
+        android:prompt="@string/country_prompt"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:entries="@array/country_arrays" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_units"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_units"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Units" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_price"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/input_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unit Price" />
+
+    </android.support.design.widget.TextInputLayout>
+
+<!--style="@android:style/Widget.Holo.Light.Spinner"-->
+
+    <!--<Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spBussinessType"
+        android:prompt="@string/business_prompt"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined" />-->
+
+</LinearLayout>

@@ -1,13 +1,16 @@
 package com.eduhg.myshop.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.DropBoxManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +18,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.eduhg.myshop.R;
@@ -34,6 +41,11 @@ public class DashboardFragment extends Fragment {
     ArrayList<SoldItem> soldItem;
 
     BarChart barChart;
+
+    FloatingActionButton fab_plus, fab_sales, fab_expense;
+    Animation fab_open, fab_close, fab_clockwise, fab_anticlockwise;
+    boolean isOpen = false;
+
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -114,6 +126,48 @@ public class DashboardFragment extends Fragment {
         barChart.setFitBars(true); // make the x-axis fit exactly all bars
         barChart.invalidate(); // refresh
 
+        fab_plus = (FloatingActionButton) rootView.findViewById(R.id.fab_plus);
+        fab_expense = (FloatingActionButton) rootView.findViewById(R.id.fab_expenses);
+        fab_sales = (FloatingActionButton) rootView.findViewById(R.id.fab_sales);
+
+        fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
+        fab_clockwise = AnimationUtils.loadAnimation(getContext(), R.anim.fab_rotate_clockwise);
+        fab_anticlockwise = AnimationUtils.loadAnimation(getContext(), R.anim.fab_rotate_anticlockwise);
+
+        fab_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isOpen){
+                    fab_expense.startAnimation(fab_close);
+                    fab_sales.startAnimation(fab_close);
+                    fab_plus.startAnimation(fab_anticlockwise);
+
+                    fab_expense.setClickable(false);
+                    fab_sales.setClickable(false);
+
+                    isOpen = false;
+                } else {
+                    fab_expense.startAnimation(fab_open);
+                    fab_sales.startAnimation(fab_open);
+                    fab_plus.startAnimation(fab_clockwise);
+
+                    fab_expense.setClickable(true);
+                    fab_sales.setClickable(true);
+
+                    isOpen = true;
+                }
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab_sales);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showEditDialog();
+            }
+        });
+
         return rootView;
     }
 
@@ -141,5 +195,36 @@ public class DashboardFragment extends Fragment {
         });
 
         popupmenu.show();
+    }
+
+    private void showEditDialog() {
+//        FragmentManager fm = getActivity().getSupportFragmentManager();
+//        NewTopicFragment newTopicFragment = NewTopicFragment.newInstance("Some Title");
+//        newTopicFragment.show(fm, "fragment_new_topic");
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setTitle("Add Stock");
+        // Get the layout inflater
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.new_sales_entry, null))
+                // Add action buttons
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // sign in the user ...
+                        Toast.makeText(getActivity(), "Settings Clicked", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //NewTopicFragment.this.getDialog().cancel();
+                    }
+                });
+        builder.show();
+
     }
 }

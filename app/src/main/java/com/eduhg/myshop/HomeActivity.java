@@ -21,11 +21,15 @@ import com.eduhg.myshop.fragments.SalesFragment;
 import com.eduhg.myshop.fragments.StockFragment;
 import com.eduhg.myshop.fragments.SuppliersFragment;
 
+import br.com.mauker.materialsearchview.MaterialSearchView;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+
+    //MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,8 @@ public class HomeActivity extends AppCompatActivity
         emailText.setText("newemail@email.com");
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        //searchView = (MaterialSearchView) findViewById(R.id.search_view);
     }
 
     @Override
@@ -67,6 +73,15 @@ public class HomeActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+
+        // To close the search view using the back button
+        /*if (searchView.isOpen()) {
+            // Close the search on the back button press.
+            searchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }*/
     }
 
     @Override
@@ -85,6 +100,11 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.action_search) {
+            //searchView.openSearch();
             return true;
         }
 
