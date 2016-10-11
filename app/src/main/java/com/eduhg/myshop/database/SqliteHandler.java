@@ -26,9 +26,9 @@ public class SqliteHandler  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String table_sql = "CREATE TABLE sales (id INTEGER PRIMARY KEY " +
-                "item_name TEXT " +
-                "quantity INTEGER " +
+        String table_sql = "CREATE TABLE sales (id INTEGER PRIMARY KEY, " +
+                "item_name TEXT, " +
+                "quantity INTEGER, " +
                 "price DOUBLE)";
 
         db.execSQL(table_sql);
@@ -43,7 +43,7 @@ public class SqliteHandler  extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addSale(String item_name, String quantity, String price) {
+    public void addSale(String item_name, String quantity, String price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 

@@ -1,5 +1,6 @@
 package com.eduhg.myshop.fragments;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.os.DropBoxManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,12 +23,14 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.eduhg.myshop.R;
 import com.eduhg.myshop.adapters.SoldItemsAdapter;
+import com.eduhg.myshop.dialogFragments.NewSaleDialogFragment;
 import com.eduhg.myshop.models.SoldItem;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -45,7 +49,6 @@ public class DashboardFragment extends Fragment {
     FloatingActionButton fab_plus, fab_sales, fab_expense;
     Animation fab_open, fab_close, fab_clockwise, fab_anticlockwise;
     boolean isOpen = false;
-
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -198,15 +201,19 @@ public class DashboardFragment extends Fragment {
     }
 
     private void showEditDialog() {
-//        FragmentManager fm = getActivity().getSupportFragmentManager();
-//        NewTopicFragment newTopicFragment = NewTopicFragment.newInstance("Some Title");
-//        newTopicFragment.show(fm, "fragment_new_topic");
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        NewSaleDialogFragment newTopicFragment = NewSaleDialogFragment.newInstance("Add Stock");
+        //NewSaleDialogFragment newTopicFragment = new NewSaleDialogFragment();
+        newTopicFragment.show(fm, "new_sales_entry");
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        /* AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle("Add Stock");
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        //View transactionLayout = View.inflate(getActivity(), R.layout.new_sales_entry, null);
+        //builder.setView(transactionLayout);
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
@@ -224,7 +231,8 @@ public class DashboardFragment extends Fragment {
                         //NewTopicFragment.this.getDialog().cancel();
                     }
                 });
-        builder.show();
+        builder.show();*/
 
     }
+
 }
